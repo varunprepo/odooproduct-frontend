@@ -39,7 +39,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        //<Route path="/auth-landing" element={<AuthLanding />} />
+        <Route path="/auth-landing" element={<AuthLanding />} />
         <Route
         path="/odoo-prod-cardgen"
         element={
@@ -51,7 +51,6 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/whatsapp-template" element={<WhatsAppMessageTemplate />} />
-        <Route path="/auth-landing" element={<Navigate to="/auth-landing" />} />
       </Routes>
     </Router>
   );

@@ -11,7 +11,8 @@ const Register = () => {
     e.preventDefault();
     try {
       {/* await axios.post("http://127.0.0.1:3000/api/auth/register", form); */}
-      await axios.post("http://localhost:3000/api/auth/register", form);
+      //await axios.post("http://localhost:3000/api/auth/register", form);
+      await axios.post("https://odooproduct-backend.onrender.com:3000/api/auth/register", form);
       //alert("Registration successful!");
       setStatus("✅ Registered. Check your email for activation instructions (if required).");
       setTimeout(() => navigate("/login"), 1500);

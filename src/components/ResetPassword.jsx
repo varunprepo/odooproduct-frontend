@@ -11,7 +11,8 @@ export default function ResetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/api/auth/reset-password", form);
+      //await axios.post("http://localhost:3000/api/auth/reset-password", form);
+      await axios.post("https://odooproduct-backend.onrender.com:3000/api/auth/reset-password", form);
       setStatus("✅ Password reset successful. Redirecting to login...");
       setTimeout(() => navigate("/login"), 1300);
     } catch (err) {

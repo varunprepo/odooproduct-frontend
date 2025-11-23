@@ -11,7 +11,8 @@ export default function ForgotPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3000/api/auth/request-reset", { email });
+      //await axios.post("http://localhost:3000/api/auth/request-reset", { email });
+      await axios.post("https://odooproduct-backend.onrender.com:3000/api/auth/request-reset", { email });
       setStatus("✅ Activation code sent to your email (check spam).");
       // optionally redirect to reset page
       setTimeout(() => navigate("/reset-password"), 1200);
