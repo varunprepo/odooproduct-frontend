@@ -451,7 +451,7 @@ useEffect(() => {
               <div className="col-span-full flex justify-center py-20">
                 <Loader className="w-10 h-10 text-indigo-500 animate-spin" />
               </div>
-            ) : paginatedProducts.length > 0 ? (
+            ) : paginatedProducts.length > 0 ? ({
                 const groupedByName = {};
                 paginatedProducts.forEach(p => {
                     if (!groupedByName[p.name]) groupedByName[p.name] = [];
@@ -459,7 +459,7 @@ useEffect(() => {
                 });
 
               const groupedProducts = Object.values(groupedByName);
-              {groupedProducts.map((group, index) => {
+              groupedProducts.map((group, index) => {
                 const baseProduct = group[0];  // basic details
                 const imageList = group.map(p => p.image_base64).filter(Boolean);
                 return (
