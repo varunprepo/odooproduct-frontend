@@ -11,7 +11,7 @@ const Login = () => {
     e.preventDefault();
     try {
       //const res = await axios.post("http://localhost:3000/api/auth/login", form);
-      const res = await axios.post("https://odooproduct-backend.onrender.com:3000/api/auth/login", form);
+      const res = await axios.post("https://odooproductsbackend/api/auth/login", form);
       {/*localStorage.setItem("token", res.data.token);
       localStorage.setItem("refreshToken", res.data.refreshToken);*/}
       localStorage.setItem("username", res.data.username);
