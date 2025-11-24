@@ -20,7 +20,7 @@ const sanitizeValue = (val) => (!val || val === "false" || val === false ? "" : 
 /* --------------------------------------------------------------------------
    PRODUCT CARD
 -------------------------------------------------------------------------- */
-const ProductCard = React.memo(({ product, imageList = [], uniqueKey, copyWhatsAppText, downloadCardAsImage, html2canvasLoaded, isDownloadLoading, showToast, templateLines }) => {
+const ProductCard = React.memo(({ product, uniqueKey, copyWhatsAppText, downloadCardAsImage, html2canvasLoaded, isDownloadLoading, showToast, templateLines }) => {
   const cardRef = useRef(null);
   const isDownloading = isDownloadLoading === uniqueKey;
 
@@ -93,28 +93,16 @@ const ProductCard = React.memo(({ product, imageList = [], uniqueKey, copyWhatsA
   return (
     <div className="flex flex-col h-full">
       <div ref={cardRef} className="bg-white p-4 flex flex-col justify-between h-full text-gray-900 border border-black rounded-lg shadow-md">
-<div className="h-48 bg-gray-200 flex items-center justify-center relative overflow-hidden">
+        <div className="h-48 bg-gray-200 flex items-center justify-center relative">
+          {product.image_base64 ? (
+            <img
+              src={`data:image/png;base64,${product.image_base64}`}
+              alt={product.name}
+              className="object-contain w-full h-full"
+            />
+          ) : <span className="text-gray-400 font-semibold">No Image</span>}
+        </div>
 
-  {imageList.length > 0 ? (
-    <img
-      src={`data:image/png;base64,${imageList[currentIndex]}`}
-      alt={product.name}
-      className="object-contain w-full h-full transition-all duration-300"
-    />
-  ) : (
-    <span className="text-gray-400 font-semibold">No Image</span>
-  )}
-
-  {/* Right arrow — visible ONLY when multiple images */}
-  {imageList.length > 1 && (
-    <button
-      onClick={nextImage}
-      className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/60 p-2 rounded-full"
-    >
-      <ChevronRight className="w-5 h-5 text-white" />
-    </button>
-  )}
-</div>
         <div className="flex-grow">
           <h3 className="font-bold text-lg mb-1">{product.name}</h3>
           <p className="text-xl font-extrabold text-indigo-700 mb-2">{formattedPrice}</p>
@@ -176,13 +164,6 @@ export default function OdooProductCardGenerator() {
   const [currentPage, setCurrentPage] = useState(1);
   const [toasts, setToasts] = useState([]);
   const [templateLines, setTemplateLines] = useState([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextImage = () => {
-    if (imageList.length > 1) {
-      setCurrentIndex((prev) => (prev + 1) % imageList.length);
-    }
-  };
 
   const showToast = useCallback((message, type = "info") => {
     const id = Date.now();
@@ -452,17 +433,7 @@ useEffect(() => {
                 <Loader className="w-10 h-10 text-indigo-500 animate-spin" />
               </div>
             ) : paginatedProducts.length > 0 ? (
-                const groupedByName = {};
-                paginatedProducts.forEach(p => {
-                    if (!groupedByName[p.name]) groupedByName[p.name] = [];
-                        groupedByName[p.name].push(p);
-                });
-
-              const groupedProducts = Object.values(groupedByName);
-              {groupedProducts.map((group, index) => {
-                const baseProduct = group[0];  // basic details
-                const imageList = group.map(p => p.image_base64).filter(Boolean);
-                return (
+              paginatedProducts.map((product) => (
                 <ProductCard
                   key={product.id}
                   uniqueKey={product.id}
@@ -474,8 +445,7 @@ useEffect(() => {
                   isDownloadLoading={isDownloadLoading}
                   showToast={showToast}
                 />
-              );
-            })}
+              ))
             ) : (
               <div className="col-span-full text-center text-gray-500 py-10">
                 No products found.
