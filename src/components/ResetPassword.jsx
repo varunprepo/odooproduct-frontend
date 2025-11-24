@@ -13,7 +13,7 @@ export default function ResetPassword() {
     try {
       //await axios.post("http://localhost:3000/api/auth/reset-password", form);
       //await axios.post("https://odooproduct-backend.onrender.com:3000/api/auth/reset-password", form);
-      await axios.post("https://odooproductsbackend/api/auth/reset-password", form);
+      await axios.post("https://odooproductsbackend.vercel.app/api/auth/reset-password", form);
       setStatus("✅ Password reset successful. Redirecting to login...");
       setTimeout(() => navigate("/login"), 1300);
     } catch (err) {

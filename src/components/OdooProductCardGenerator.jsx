@@ -12,7 +12,7 @@ const PRODUCTS_PER_PAGE = 10;
 const MAX_PAGES = 5;
 //const API_URL = 'http://localhost:3000/api/auth/products';
 //const API_URL = 'https://odooproduct-backend.onrender.com:3000/api/auth/products';
-const API_URL = 'https://odooproductsbackend/api/auth/products';
+const API_URL = 'https://odooproductsbackend.vercel.app/api/auth/products';
 const MIN_SEARCH_LENGTH = 3;
 
 const sanitizeValue = (val) => (!val || val === "false" || val === false ? "" : val);
