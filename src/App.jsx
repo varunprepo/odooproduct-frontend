@@ -39,7 +39,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        //<Route path="/auth-landing" element={<Navigate to="/auth-landing" />} />
+        <Route path="/" element={<Navigate to="/auth-landing" />} />
         <Route path="/auth-landing" element={<AuthLanding />} />
         <Route
         path="/odoo-prod-cardgen"
