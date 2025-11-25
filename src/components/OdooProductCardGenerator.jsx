@@ -82,6 +82,7 @@ const ProductCard = React.memo(({
   }, [imageList, showToast]);
 
   const handleCopyText = useCallback(async () => {
+    console.log('whatsappText:',whatsappText)
     try {
       if (whatsappText !== '') {
         await navigator.clipboard.writeText(whatsappText);
@@ -293,7 +294,7 @@ export default function OdooProductCardGenerator() {
                    `&page=${encodeURIComponent(page)}` +
                    `&limit=${encodeURIComponent(limit)}`;
 
-      console.log('apiUrl is ',apiUrl)
+      //console.log('apiUrl is ',apiUrl)
       const response = await fetch(apiUrl);
       const data = await response.json();
       if (page === 1) {
