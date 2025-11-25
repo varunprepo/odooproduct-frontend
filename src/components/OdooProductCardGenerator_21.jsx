@@ -72,6 +72,7 @@ const ProductCard = React.memo(({ product, uniqueKey, copyWhatsAppText, download
   }, [product.image_base64, showToast]);
 
   const handleCopyText = useCallback(async () => {
+    console.log('whatsappText :',whatsappText)
     try {
       if (whatsappText !== '') {
         await navigator.clipboard.writeText(whatsappText);
@@ -198,7 +199,6 @@ const fetchProducts = async (term, minQty, maxQty, page = 1, limit = 50) => {
                  `&page=${encodeURIComponent(page)}` +
                  `&limit=${encodeURIComponent(limit)}`;
 
-    console.log('apiUrl is ',apiUrl)
     const response = await fetch(apiUrl);
     const data = await response.json();
     //setProducts(Array.isArray(data) ? data : []);
