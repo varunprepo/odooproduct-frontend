@@ -297,6 +297,8 @@ export default function OdooProductCardGenerator() {
       //console.log('apiUrl is ',apiUrl)
       const response = await fetch(apiUrl);
       const data = await response.json();
+      colsole.log('page no. :',page)
+      colsole.log('json data :',data)
       if (page === 1) {
         setProducts(data);
       } else {
